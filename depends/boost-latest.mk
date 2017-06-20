@@ -13,7 +13,10 @@ all: $(package_tarball)
         --without-python \
         --without-mpi  \
         --without-graph_parallel  \
-        --without-graph install
+        --without-graph \
+        --buildid=gcc52-mt-s \
+        variant=release link=static runtime-link=static threading=multi \
+        install
 
 $(package_tarball):
 	curl -k $(package_download_url) -o $(package_tarball)
