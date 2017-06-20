@@ -8,7 +8,7 @@ package_tarball=/tmp/$(package)-$(package_version).tar.gz
 all: $(package_tarball)
 	tar zxvf $(package_tarball) -C /tmp && \
 	cd $(package_build_dir) && \
-	./configure --prefix=$(package_out_dir) --enable-shared=no --enable-static=yes && \
+	./configure --prefix=$(package_out_dir) --enable-shared=no --enable-static=yes CFLAGS='-fPIC' CXXFLAGS='-fPIC' && \
 	make && \
         make install && \
         make clean

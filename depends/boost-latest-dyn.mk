@@ -10,13 +10,13 @@ all: $(package_tarball)
 	tar xvjpf $(package_tarball) -C /tmp && \
 	cd $(package_build_dir) && \
 	sh ./bootstrap.sh && \
-	./b2 --prefix=$(package_out_dir) -a --debug-building \
+	./b2 --prefix=$(package_out_dir) \
         --without-python \
         --without-mpi  \
         --without-graph_parallel  \
         --without-graph \
-        --buildid=gcc52-mt-s \
-        cxxflags=-fPIC variant=release link=static runtime-link=static threading=multi \
+        --buildid=gcc52-mt \
+        variant=release link=shared runtime-link=shared threading=multi \
         install
 
 $(package_tarball):

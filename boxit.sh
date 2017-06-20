@@ -16,6 +16,7 @@ export MPC_ROOT=$BUILD_DIR/MPC-MPC_4_1_2
 export BOOST_ROOT=$BUILD_DIR
 # Note: Makefile request for `$BOOST_ROOT/include/$BOOST_VERSION', use `.' to make it work
 export BOOST_VERSION="."
+export BOOST_CFG="-gcc52-mt"
 
 # Note: Bug in `src/Makefile.QuickFast', it use `XERCESCROOT' instead of `XERCES_ROOT' 
 export XERCESCROOT=$BUILD_DIR
