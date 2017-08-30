@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #Note: build on ubuntu12.04 x86, with gcc/g++(version4.6.3)
+#Note: use `dpkg-reconfigure dash' to select bash as default shell.
 
 # Command file to set QuickFAST environment
 # QuickFAST depends on MPC V 3.6 or later. (http://www.ociweb.com/products/mpc)
@@ -8,6 +9,12 @@
 # QuickFAST depends on Xerces V3.0 or later. (http://xerces.apache.org/xerces-c/)
 # Customize this file by setting variables to suit your environment
 BUILD_DIR=~/workspace/built
+
+# Make all depends
+make INSTALLROOT=$(BUILD_DIR) -f ./depends/boost-1.64-dyn.mk
+make INSTALLROOT=$(BUILD_DIR) -f ./depends/mpc-4.1.2.mk
+make INSTALLROOT=$(BUILD_DIR) -f ./depends/xercesc-3.1.4.mk
+make INSTALLROOT=$(BUILD_DIR) -f ./depends/zmq-4.2.1.mk
 
 export QUICKFAST_ROOT=$(dirname $(readlink -f $0))
 
