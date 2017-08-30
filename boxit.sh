@@ -11,10 +11,10 @@
 BUILD_DIR=~/workspace/built
 
 # Make all depends
-make INSTALLROOT=$(BUILD_DIR) -f ./depends/boost-1.64-dyn.mk
-make INSTALLROOT=$(BUILD_DIR) -f ./depends/mpc-4.1.2.mk
-make INSTALLROOT=$(BUILD_DIR) -f ./depends/xercesc-3.1.4.mk
-make INSTALLROOT=$(BUILD_DIR) -f ./depends/zmq-4.2.1.mk
+make INSTALLROOT=$BUILD_DIR -f ./depends/boost-1.64-dyn.mk
+make INSTALLROOT=$BUILD_DIR -f ./depends/mpc-4.1.2.mk
+make INSTALLROOT=$BUILD_DIR -f ./depends/xercesc-3.1.4.mk
+make INSTALLROOT=$BUILD_DIR -f ./depends/zmq-4.2.1.mk
 
 export QUICKFAST_ROOT=$(dirname $(readlink -f $0))
 
@@ -36,3 +36,7 @@ source ./setup.sh && source ./m.sh
 
 make && \
 ./bin/QuickFASTTest 
+
+
+# Copy library to target directory
+cp -rfL bin lib $BUILD_DIR/
