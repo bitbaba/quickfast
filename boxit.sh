@@ -14,7 +14,6 @@ BUILD_DIR=~/workspace/built
 make INSTALLROOT=$BUILD_DIR -f ./depends/boost-1.64-dyn.mk
 make INSTALLROOT=$BUILD_DIR -f ./depends/mpc-4.1.2.mk
 make INSTALLROOT=$BUILD_DIR -f ./depends/xercesc-3.1.4.mk
-make INSTALLROOT=$BUILD_DIR -f ./depends/zmq-4.2.1.mk
 
 export QUICKFAST_ROOT=$(dirname $(readlink -f $0))
 
