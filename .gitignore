@@ -6,6 +6,7 @@
 *.obj
 *.iobj
 ipch/
+/build/
 
 # Compiled Dynamic libraries
 *.so
