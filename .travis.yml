@@ -45,8 +45,7 @@ script:
     - source ./setup.sh && source ./m.sh && make -j $MAKEJOBS && ./bin/QuickFASTTest && cp -rfL bin lib $BUILD_DIR/
 
 after_success:
-    # search for win32 install package, if found, export its full path.
-    - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -d $BUILD_DIR ] ; then tar czf $BUILD_DIR.tar.gz $BUILD_DIR && (sudo sshpass -p "$SCP_PASSWORD" scp -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" -P "$SCP_PORT" $BUILD_DIR.tar.gz "$SCP_HOST:$SCP_PATH" && echo "Successfully Upload $OUTDIR.tar.gz"); fi
+    # - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -d $BUILD_DIR ] ; then tar czf $BUILD_DIR.tar.gz $BUILD_DIR && (sudo sshpass -p "$SCP_PASSWORD" scp -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" -P "$SCP_PORT" $BUILD_DIR.tar.gz "$SCP_HOST:$SCP_PATH" && echo "Successfully Upload $OUTDIR.tar.gz"); fi
 
 after_script:
     - echo $TRAVIS_COMMIT_RANGE

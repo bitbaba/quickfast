@@ -9,7 +9,7 @@ $(package)_temp_build_dir=/tmp/$(package)_$($(package)_version)
 #ref: http://www.boost.org/build/doc/html/bbv2/overview/invocation.html
 
 all: $($(package)_file)
-	tar xvjpf $($(package)_file) -C /tmp && \
+	tar xvjpf $($(package)_file) -C /tmp > /dev/null && \
 	cd $($(package)_temp_build_dir) && \
 	sh ./bootstrap.sh && \
 	./b2 --prefix=$($(package)_out_dir) \
