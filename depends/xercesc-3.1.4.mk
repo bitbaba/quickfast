@@ -1,20 +1,20 @@
 package=xerces-c
-package_version=3.1.4
-package_out_dir=$${INSTALLROOT}
-#package_download_url="http://mirrors.tuna.tsinghua.edu.cn/apache/xerces/c/3/sources/xerces-c-3.1.4.tar.gz"
-package_download_url="http://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.4.tar.gz"
-package_build_dir=/tmp/$(package)-$(package_version)
-package_tarball=/tmp/$(package)-$(package_version).tar.gz
+$(package)_version=3.1.4
+$(package)_out_dir=$${abs_repo_root}/build
+$(package)_download_url="http://archive.apache.org/dist/xerces/c/3/sources/$(package)-$($(package)_version).tar.bz2"
+$(package)_file=$${abs_repo_root}/depends/sources/$(package)-$($(package)_version).tar.bz2
+$(package)_sha256hash=
+$(package)_temp_build_dir=/tmp/$(package)-$($(package)_version)
 
-all: $(package_tarball)
-	tar zxvf $(package_tarball) -C /tmp && \
-	cd $(package_build_dir) && \
-	./configure --prefix=$(package_out_dir) --enable-shared=no --enable-static=yes CFLAGS='-fPIC' CXXFLAGS='-fPIC' && \
-	make && \
-        make install && \
-        make clean
+all: $($(package)_file)
+	tar xvjpf $($(package)_file) -C /tmp && \
+    cd $($(package)_temp_build_dir) && \
+    ./configure --prefix=$($(package)_out_dir) --enable-shared=no --enable-static=yes CFLAGS='-fPIC' CXXFLAGS='-fPIC' && \
+    make && \
+    make install && \
+    make clean
 
-$(package_tarball):
-	curl $(package_download_url) -o $(package_tarball)
+$($(package)_file):
+	if [ -f $($(package)_file) ] ; then echo cached; else curl -k -L $($(package)_download_url) -o $($(package)_file); fi
 
 .PHONY: all 
