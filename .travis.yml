@@ -9,6 +9,7 @@ cache:
 env:
   global:
     - MAKEJOBS=-j3
+    - CONFIG_SHELL=/bin/bash
     - BASE_OUTDIR=$TRAVIS_BUILD_DIR/out
     # repo directory
     - REPO_DIR=$TRAVIS_BUILD_DIR
