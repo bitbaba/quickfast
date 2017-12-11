@@ -37,12 +37,12 @@ install:
     
 script:
     # Make all depends and deploy them into $BUILD_DIR
-    make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/boost-1.64-dyn.mk
-    make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/mpc-4.1.2.mk
-    make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/xercesc-3.1.4.mk
+    - make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/boost-1.64-dyn.mk
+    - make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/mpc-4.1.2.mk
+    - make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/xercesc-3.1.4.mk
 
     # Build
-    source ./setup.sh && source ./m.sh && make -j $MAKEJOBS && ./bin/QuickFASTTest && cp -rfL bin lib $BUILD_DIR/
+    - source ./setup.sh && source ./m.sh && make -j $MAKEJOBS && ./bin/QuickFASTTest && cp -rfL bin lib $BUILD_DIR/
 
 after_success:
     # search for win32 install package, if found, export its full path.
