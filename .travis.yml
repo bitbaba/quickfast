@@ -27,7 +27,7 @@ env:
     
   matrix:
 # x86_64 Linux (uses qt5 dev package instead of depends Qt to speed up build and avoid timeout)
-    - HOST=x86_64-unknown-linux-gnu PACKAGES="sshpass"
+    - HOST=x86_64-unknown-linux-gnu PACKAGES="sshpass libcurl4-openssl-dev"
 
 before_install:
     - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
