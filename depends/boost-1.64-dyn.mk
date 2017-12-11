@@ -19,7 +19,7 @@ all: $($(package)_file)
         --without-graph \
         --buildid=gccunk-mt \
         variant=release link=shared runtime-link=shared threading=multi \
-        install
+        install > dev/null
 
 $($(package)_file):
 	if [ -f $($(package)_file) ] ; then echo cached; else curl -k -L $($(package)_download_url) -o $($(package)_file); fi
