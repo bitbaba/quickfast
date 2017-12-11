@@ -10,21 +10,21 @@ env:
   global:
     - MAKEJOBS=-j3
     - BASE_OUTDIR=$TRAVIS_BUILD_DIR/out
-	# repo directory
-	- REPO_DIR=$TRAVIS_BUILD_DIR
-	# build directory
-	- BUILD_DIR=$REPO_DIR/build
-	# quickfast
-	- QUICKFAST_ROOT=$REPO_DIR
-	# mpc
-	- MPC_ROOT=$BUILD_DIR/MPC-MPC_4_1_2
-	# boost
+    # repo directory
+    - REPO_DIR=$TRAVIS_BUILD_DIR
+    # build directory
+    - BUILD_DIR=$REPO_DIR/build
+    # quickfast
+    - QUICKFAST_ROOT=$REPO_DIR
+    # mpc
+    - MPC_ROOT=$BUILD_DIR/MPC-MPC_4_1_2
+    # boost
     - BOOST_ROOT=$BUILD_DIR
     - BOOST_VERSION="."
     - BOOST_CFG="-gccunk-mt"
-	# xerces-c
+    # xerces-c
     - XERCESCROOT=$BUILD_DIR
-	
+    
   matrix:
 # x86_64 Linux (uses qt5 dev package instead of depends Qt to speed up build and avoid timeout)
     - HOST=x86_64-unknown-linux-gnu PACKAGES="sshpass"
@@ -34,15 +34,15 @@ before_install:
 install:
     - if [ -n "$PACKAGES" ]; then travis_retry sudo apt-get update; fi
     - if [ -n "$PACKAGES" ]; then travis_retry sudo apt-get install --no-install-recommends --no-upgrade -qq $PACKAGES; fi
-	
+    
 script:
-	# Make all depends and deploy them into $BUILD_DIR
-	make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/boost-1.64-dyn.mk
-	make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/mpc-4.1.2.mk
-	make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/xercesc-3.1.4.mk
+    # Make all depends and deploy them into $BUILD_DIR
+    make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/boost-1.64-dyn.mk
+    make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/mpc-4.1.2.mk
+    make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/xercesc-3.1.4.mk
 
-	# Build
-	source ./setup.sh && source ./m.sh && make -j $MAKEJOBS && ./bin/QuickFASTTest && cp -rfL bin lib $BUILD_DIR/
+    # Build
+    source ./setup.sh && source ./m.sh && make -j $MAKEJOBS && ./bin/QuickFASTTest && cp -rfL bin lib $BUILD_DIR/
 
 after_success:
     # search for win32 install package, if found, export its full path.
