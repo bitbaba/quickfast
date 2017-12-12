@@ -1,4 +1,3 @@
-#!/bin/bash
 package=boost
 $(package)_version=1_64_0
 $(package)_out_dir=$${abs_repo_root}/build

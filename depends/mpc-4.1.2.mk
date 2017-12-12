@@ -1,4 +1,3 @@
-#!/bin/bash
 package=MPC
 $(package)_version=MPC_4_1_2
 $(package)_out_dir=$${abs_repo_root}/build
