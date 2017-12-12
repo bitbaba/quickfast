@@ -18,7 +18,7 @@ all: $($(package)_file)
     CFLAGS='-fPIC' CXXFLAGS='-fPIC' && \
     make && \
     make install && \
-    make clean
+    make clean > /dev/null
 
 $($(package)_file):
 	if [ -f $($(package)_file) ] ; then echo cached; else curl -k -L $($(package)_download_url) -o $($(package)_file); fi
