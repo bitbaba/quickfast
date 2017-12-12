@@ -18,6 +18,8 @@ all: $($(package)_file)
         --without-graph \
         --buildid=gccunk-mt \
         variant=release link=static runtime-link=shared threading=multi \
+        cxxflags=-fPIC \
+        cflags=-fPIC \
         install > /dev/null 
 
 $($(package)_file):
