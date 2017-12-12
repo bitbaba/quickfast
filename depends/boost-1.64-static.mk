@@ -18,7 +18,7 @@ all: $($(package)_file)
         --without-graph \
         --buildid=gccunk-mt-s \
         cxxflags=-fPIC variant=release link=static runtime-link=static threading=multi \
-        install > /dev/null
+        install 
 
 $($(package)_file):
 	if [ -f $($(package)_file) ] ; then echo cached; else curl -k -L $($(package)_download_url) -o $($(package)_file); fi

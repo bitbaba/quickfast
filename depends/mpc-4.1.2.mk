@@ -8,7 +8,7 @@ $(package)_temp_build_dir=/tmp/$(package)-$($(package)_version)
 
 all: $($(package)_file)
 	tar zxvf $($(package)_file) -C /tmp && \
-	cp -rf $($(package)_temp_build_dir) $($(package)_out_dir) 
+	cp -rf $($(package)_temp_build_dir) $($(package)_out_dir)/ 
 
 $($(package)_file):
 	if [ -f $($(package)_file) ] ; then echo cached; else curl -k -L $($(package)_download_url) -o $($(package)_file); fi
