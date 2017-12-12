@@ -44,7 +44,7 @@ script:
 
     # Build
     # - /bin/bash build.sh 
-    - find $BUILD_DIR
+    - find $BUILD_DIR -type f -iname "mwc.pl"
     - source ./setup.sh && source ./m.sh && make -j $MAKEJOBS && ./bin/QuickFASTTest && cp -rfL bin lib $BUILD_DIR/
 
 after_success:
