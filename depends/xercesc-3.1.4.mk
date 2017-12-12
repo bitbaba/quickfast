@@ -9,7 +9,13 @@ $(package)_temp_build_dir=/tmp/$(package)-$($(package)_version)
 all: $($(package)_file)
 	tar xvjpf $($(package)_file) -C /tmp > /dev/null && \
     cd $($(package)_temp_build_dir) && \
-    ./configure --prefix=$($(package)_out_dir) --enable-shared=no --enable-static=yes CFLAGS='-fPIC' CXXFLAGS='-fPIC' && \
+    ./configure --prefix=$($(package)_out_dir) \
+    --enable-shared=no \
+    --with-pic \
+    --without-icu \
+    --without-curl \
+    --enable-static=yes \
+    CFLAGS='-fPIC' CXXFLAGS='-fPIC' && \
     make && \
     make install && \
     make clean
