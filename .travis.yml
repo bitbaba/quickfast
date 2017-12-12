@@ -27,7 +27,7 @@ env:
     
   matrix:
 # x86_64 Linux (uses qt5 dev package instead of depends Qt to speed up build and avoid timeout)
-    - HOST=x86_64-unknown-linux-gnu PACKAGES="sshpass libcurl4-openssl-dev"
+    - HOST=x86_64-unknown-linux-gnu PACKAGES="sshpass"
 
 before_install:
     - export PATH=$(echo $PATH | tr ':' "\n" | sed '/\/opt\/python/d' | tr "\n" ":" | sed "s|::|:|g")
@@ -39,8 +39,8 @@ script:
     # Make all depends and deploy them into $BUILD_DIR
     # - make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/boost-1.64-dyn.mk
     - make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/boost-1.64-static.mk
-    - make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/mpc-4.1.2.mk
     - make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/xercesc-3.1.4.mk
+    - make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/mpc-4.1.2.mk
 
     # Build
     - /bin/bash build.sh #source ./setup.sh && source ./m.sh && make -j $MAKEJOBS && ./bin/QuickFASTTest && cp -rfL bin lib $BUILD_DIR/
@@ -49,5 +49,4 @@ after_success:
     # - if ! "$TRAVIS_PULL_REQUEST" && "$TRAVIS_SECURE_ENV_VARS" && [ -d $BUILD_DIR ] ; then tar czf $BUILD_DIR.tar.gz $BUILD_DIR && (sudo sshpass -p "$SCP_PASSWORD" scp -o "StrictHostKeyChecking no" -o "UserKnownHostsFile /dev/null" -P "$SCP_PORT" $BUILD_DIR.tar.gz "$SCP_HOST:$SCP_PATH" && echo "Successfully Upload $OUTDIR.tar.gz"); fi
 
 after_script:
-    - echo $TRAVIS_COMMIT_RANGE
-    - echo $TRAVIS_COMMIT_LOG
+    - echo "$TRAVIS_COMMIT_RANGE" : "$TRAVIS_COMMIT_LOG"
