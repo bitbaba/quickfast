@@ -1,3 +1,4 @@
+#!/bin/bash
 package=boost
 $(package)_version=1_64_0
 $(package)_out_dir=$${abs_repo_root}/build
@@ -11,7 +12,7 @@ $(package)_temp_build_dir=/tmp/$(package)_$($(package)_version)
 all: $($(package)_file)
 	tar xvjpf $($(package)_file) -C /tmp > /dev/null && \
 	cd $($(package)_temp_build_dir) && \
-	sh ./bootstrap.sh && \
+	/bin/bash ./bootstrap.sh && \
 	./b2 --prefix=$($(package)_out_dir) \
         --without-python \
         --without-mpi  \
