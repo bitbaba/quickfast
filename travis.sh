@@ -13,7 +13,8 @@ REPO_DIR=$PWD
 BUILD_DIR=$REPO_DIR/build
 
 # Make all depends and deploy them into $BUILD_DIR
-make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/boost-1.64-dyn.mk
+#make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/boost-1.64-dyn.mk
+make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/boost-1.64-static.mk
 make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/mpc-4.1.2.mk
 make abs_repo_root=$REPO_DIR -f $REPO_DIR/depends/xercesc-3.1.4.mk
 

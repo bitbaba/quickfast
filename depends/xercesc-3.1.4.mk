@@ -16,9 +16,9 @@ all: $($(package)_file)
     --without-curl \
     --enable-static=yes \
     CFLAGS='-fPIC' CXXFLAGS='-fPIC' && \
-    make && \
-    make install && \
-    make clean > /dev/null
+    make > /dev/null && \
+    make install > /dev/null && \
+    make clean 
 
 $($(package)_file):
 	if [ -f $($(package)_file) ] ; then echo cached; else curl -k -L $($(package)_download_url) -o $($(package)_file); fi
