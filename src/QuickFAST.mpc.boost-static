@@ -66,7 +66,7 @@ project(*test) : boost_unit_test_framework, boost_base, boost_filesystem, boost_
 
   libs += QuickFAST
   after += QuickFAST
-//  #macros += BOOST_TEST_DYN_LINK
+//#macros += BOOST_TEST_DYN_LINK
   pch_header = Common/QuickFASTPch.h
   pch_source = Common/QuickFASTPch.cpp
   Source_Files {
